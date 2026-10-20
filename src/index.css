@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+@theme {
+    --color-fundo: #0f0b1a;
+    --color-superficie: #1a1428;
+    --color-primaria: #a855f7;
+    --color-destaque: #22d3ee;
+    --color-texto: #e5e7eb;
+    --color-texto-suave: #9ca3af;
+
+    --font-sans: Inter, system-ui, sans-serif;
+    --font-titulo: "Space Grotesk", system-ui, sans-serif;
+    
+    /* Essas sao as classes do tailwind pra se usar em css, podendo ser chamadas nas paginas combinadas como font-titulo, texto-primario, etc. */
+    /* A Inter não precisa de aspas porque é uma palavra só. Já “Space Grotesk” precisa, por ter espaço. */
+}
+
+@layer base {
+    body {
+        @apply bg-fundo text-texto font-sans;
+    }
+}
+
+/* @theme (no CSS): registra tuas cores e fontes como classes do Tailwind. @apply puxa classes do Tailwind pra dentro do CSS */
