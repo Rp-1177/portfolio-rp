@@ -1,8 +1,34 @@
+import { projetos } from "../data/projetos"
+
+// O import do array: { projetos } com chaves, porque foi export nomeado. O caminho ../data/projetos sobe uma pasta (..) e entra em data. Não precisa escrever .js.
+
+import ProjetoCard from "../components/ProjetoCard"
+
 function Projetos() {
     return (
         <section>
             <h1 className="font-titulo text-4xl font-bold">Projetos</h1>
-            <p className="mt-4 text-texto-suave">Em breve</p>
+            <p className="mt-4 max-w-xl text-texto-suave">
+                Alguns dos projetos que construí enquaunto estudo e pratico front end.
+            </p>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+{/* grid: ativa. Sem mais nada, vira 1 coluna (perfeito pra celular).
+md:grid-cols-2: de 768px pra cima, 2 colunas de largura igual.
+lg:grid-cols-3: de 1024px pra cima, 3 colunas.
+gap-6: 24px entre linhas e colunas. */}
+{/* Os itens do grid esticam por padrão pra mesma altura da linha, e é por isso que os cards ficam alinhados sem a gente pedir. */}
+
+                {projetos.map((projeto) => (
+                    <ProjetoCard key={projeto.id} {...projeto} />
+
+// O spread {...projeto}: espalha todas as chaves do objeto como props. É um atalho pra: <ProjetoCard titulo={projeto.titulo} descricao={projeto.descricao} tecnologias={projeto.tecnologias} github={projeto.github} demo={projeto.demo} />
+// O id também vai como prop, mas o ProjetoCard não declara ele, então simplesmente ignora.
+// A key fica no .map(), no componente de fora, e não dentro do ProjetoCard.
+
+                ))}
+            </div>
         </section>
     )
 }
