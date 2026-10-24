@@ -33,6 +33,7 @@ function ProjetoCard({ titulo, descricao, tecnologias, github, demo}) {
                 {demo && <Button href={demo}>Ver online</Button>}
 
 {/* {demo && <Button ...>}: renderização condicional. O && funciona assim: se demo for “verdadeiro” (texto não vazio), renderiza o botão. Se for string vazia '', o React não mostra nada. Resultado: o botão “Ver online” só aparece quando existe link de demo. ⚠️ Cuidado: se o valor for o número 0, o React mostra o “0” na tela. Com números, use contador > 0 && .... */}
+{/* O Button decide: tem to? É Link. Não tem? É <a> normal. */}
 
             </div>
         </Card>

@@ -19,6 +19,9 @@ md:grid-cols-2: de 768px pra cima, 2 colunas de largura igual.
 lg:grid-cols-3: de 1024px pra cima, 3 colunas.
 gap-6: 24px entre linhas e colunas. */}
 {/* Os itens do grid esticam por padrão pra mesma altura da linha, e é por isso que os cards ficam alinhados sem a gente pedir. */}
+{/* grid-cols-2 vira grid-template-columns: repeat(2, minmax(0, 1fr)): 2 colunas iguais.
+fr significa “fração do espaço disponível”. 1fr 1fr = metade e metade.
+O minmax(0, 1fr) impede que um conteúdo largo (um texto sem quebra, por exemplo) estoure a coluna. */}
 
                 {projetos.map((projeto) => (
                     <ProjetoCard key={projeto.id} {...projeto} />
