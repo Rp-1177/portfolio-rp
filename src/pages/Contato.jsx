@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTitulo } from '../hooks/useTitulo'
 
 const campo =
   'w-full rounded-lg border border-white/10 bg-fundo px-4 py-3 text-texto placeholder:text-texto-suave focus:border-primaria focus:ring-2 focus:ring-primaria/40 focus:outline-none'
@@ -16,6 +17,8 @@ const links = [
 ]
 
 function Contato() {
+  useTitulo('Contato | Ruan')
+  
   const [form, setForm] = useState({ nome: '', email: '', mensagem: '' })
   const [erro, setErro] = useState('')
 

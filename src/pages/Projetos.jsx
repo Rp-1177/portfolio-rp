@@ -1,10 +1,13 @@
 import { projetos } from "../data/projetos"
+import { useTitulo } from "../hooks/useTitulo"
 
 // O import do array: { projetos } com chaves, porque foi export nomeado. O caminho ../data/projetos sobe uma pasta (..) e entra em data. Não precisa escrever .js.
 
 import ProjetoCard from "../components/ProjetoCard"
 
 function Projetos() {
+    useTitulo('Projetos | Ruan')
+    
     return (
         <section>
             <h1 className="font-titulo text-4xl font-bold">Projetos</h1>

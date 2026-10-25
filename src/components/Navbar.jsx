@@ -20,6 +20,8 @@ const estiloMobile = ({ isActive }) =>
 `block rounded-lg px-3 py-3 font-medium transition-colors hover:white/5 ${ isActive ? 'text-destaque' : 'text-texto-suave'  
 }`
 
+// O <a> é inline: a área clicável é só o texto. Com block + px-3 py-3, a linha inteira vira clicável. No celular isso é essencial: o dedo precisa de uma área de toque de uns 44px de altura. Aqui: 12px + 24px de linha + 12px = 48px ✅.
+
 function Navbar() {
   const [aberto, setAberto] = useState(false)
 
@@ -61,6 +63,8 @@ px-6 py-4: padding de 24px nos lados e 16px em cima/embaixo */}
 
 {/* hidden = display: none. Em tela pequena, a lista some. */}
 {/* md:flex = “de 768px pra cima, vira display: flex”. Como o prefixo só vale a partir do breakpoint, ele substitui o hidden nas telas grandes. */}
+{/* hidden (display: none): o elemento continua no HTML, só não aparece. Não é alcançável pelo Tab nem lido por leitor de tela. O state interno dele, se tiver, é mantido. */}
+{/* {cond && ...}: o elemento nem existe quando falso. O state interno dele é perdido ao sumir. */}
 
           {links.map(({ to, label }) => (
 
@@ -144,6 +148,22 @@ px-6 py-4: padding de 24px nos lados e 16px em cima/embaixo */}
 {/* <path d="M4 6h16M4 12h16M4 18h16" />: o d é a “receita” do desenho. M4 6 = mover o cursor pro ponto (4,6), h16 = linha horizontal de 16 de comprimento. Três linhas = ☰ */}
 {/* d="M6 6l12 12M18 6L6 18": duas diagonais cruzadas = ✕ */}
 {/* Em JSX, atributos SVG viram camelCase: strokeWidth, strokeLinecap. Em HTML puro seria stroke-width. */}
+{/* O d é uma sequência de comandos, como instruções pra uma caneta:
+
+
+M x y = Move a caneta pro ponto (x, y), sem desenhar
+L x y = desenha uma Linha até (x, y)
+h n / v n = linha horizontal/vertical de comprimento n
+Maiúscula = coordenada absoluta, minúscula = relativa ao ponto atual
+
+Lendo o ☰: vai pra (4,6), traça 16 pra direita; vai pra (4,12), traça 16; vai pra (4,18), traça 16. Três barras. */}
+{/* Lendo o ☰: vai pra (4,6), traça 16 pra direita; vai pra (4,12), traça 16; vai pra (4,18), traça 16. Três barras.
+
+Lendo o ✕: M6 6 vai pra (6,6), l12 12 desenha 12 pra direita e 12 pra baixo (relativo) e chega em (18,18). Depois M18 6 e L6 18 (absoluto) fecha a outra diagonal.
+
+viewBox="0 0 24 24" define a grade interna (24×24). O h-6 w-6 define o tamanho real (24px). Como são iguais, é 1 pra 1, mas se tu mudar pra h-10 w-10 o desenho escala inteiro sem perder qualidade.
+strokeLinecap="round" arredonda as pontas das linhas.
+currentColor faz o traço usar a cor do texto, então o ícone herda text-texto do botão. Mudou a cor do texto, mudou o ícone. */}
 
         </svg>
         </button>
@@ -181,3 +201,5 @@ px-6 py-4: padding de 24px nos lados e 16px em cima/embaixo */}
 }
 
 export default Navbar
+
+// 48rem = 768px. O hidden e o md:flex têm a mesma força (um seletor de classe cada). Quem vence é a ordem no CSS gerado, e o Tailwind coloca as variantes de breakpoint depois, então em telas grandes o md:flex ganha.

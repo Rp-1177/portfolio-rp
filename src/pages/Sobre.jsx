@@ -1,4 +1,5 @@
 import Card from "../components/Card"
+import { useTitulo } from "../hooks/useTitulo"
 
 const status = [
     { rotulo: 'Classe', valor: 'Front-End Developer' },
@@ -13,6 +14,8 @@ const inventario = [
 ]
 
 function Sobre() {
+    useTitulo('Sobre | Ruan')
+    
     return (
         <section>
             <h1 className="font-titulo text-4xl font-bold">Sobre mim</h1>

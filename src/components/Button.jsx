@@ -8,7 +8,7 @@ const variantes = {
 }
 
 // Fica fora da função: é criado uma vez só, e não a cada renderização.
-// As chaves (primario, contorno) são os nomes que tu vai passar na prop. Os valores são strings com as classes completas.
+// As chaves (primario, contorno) são os nomes que tus vai passar na prop. Os valores são strings com as classes completas.
 // hover:bg-primaria/80: no hover o fundo vai pra 80% de opacidade, então escurece um pouco.
 // hover:bg-primaria/10: no hover o botão de contorno ganha um fundo roxo bem suave (10%).
 

@@ -1,7 +1,10 @@
 import Button from "../components/Button"
 import FichaSkills from "../components/FichaSkills"
+import { useTitulo } from "../hooks/useTitulo"
 
 function Home() {
+    useTitulo('Ruan | Desenvolvedor Front End')
+    
     return (
         <>
             <section className="flex flex-col items-start gap-6 py-8 md:py-20">
