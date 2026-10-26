@@ -190,7 +190,7 @@ function Contato() {
 
               <button
                 type="submit"
-                className="rounded-lg bg-primaria px-6 py-3 font-medium text-white transition-colors hover:bg-primaria/80"
+                className="rounded-lg bg-primaria-escura px-6 py-3 font-medium text-white transition-colors hover:bg-purple-700"
               >
                 Enviar mensagem
               </button>

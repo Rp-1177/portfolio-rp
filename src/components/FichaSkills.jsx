@@ -25,7 +25,7 @@ border-b + pb-4 forma o divisor com 16px de respiro embaixo */}
                     <p className="font-titulo text-xl font-bold">Ruan Pablo</p>
                     <p className="text-sm text-texto-suave">Classe: Front-End Developer</p>
                 </div>
-                <span className="rounded-full bg-primaria/20 px-3 py-1 text-sm font-medium text-primaria">
+                <span className="rounded-full bg-primaria/20 px-3 py-1 text-sm font-medium text-purple-300">
                 Nível 1
                 </span>
 

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 // Importa só o Link da biblioteca. As chaves { } indicam import nomeado (pega uma peça específica). Sem chaves, seria import padrão, como o import Card from './Card'.
 
 const variantes = {
-    primario: 'bg-purple-600 text-white hover:bg-primaria/80',
+    primario: 'bg-primaria-escura text-white hover:bg-purple-700',
     contorno: 'border border-primaria text-primaria hover:bg-primaria/10',
 }
 

@@ -7,7 +7,7 @@ function ProjetoCard({ titulo, descricao, tecnologias, github, demo}) {
 
 {/* <Card className="flex flex-col">: lembra do className como prop? Aqui a gente adiciona o flex em coluna ao Card. Não conflita com nada que já tá lá. */}
 
-            <h3 className="font-titulo text-xl font-bold">{titulo}</h3>
+            <h2 className="font-titulo text-xl font-bold">{titulo}</h2>
             <p className="mt-2 flex-1 text-texto-suave">{descricao}</p>
 
 {/* flex-1 no parágrafo: ele “come” todo o espaço livre do card. Resultado: as tags e os botões ficam sempre colados embaixo, mesmo quando um card tem descrição curta e outro longa. Cards de alturas diferentes ficam alinhados. */}
@@ -16,7 +16,7 @@ function ProjetoCard({ titulo, descricao, tecnologias, github, demo}) {
                 {tecnologias.map((tec) => (
                     <li
                         key={tec}
-                        className="rounded-full bg-primaria/20 px-3 py-1 text-xs font-medium text-primaria"
+                        className="rounded-full bg-primaria/20 px-3 py-1 text-xs font-medium text-purple-300"
                         >
 
 {/* Os ids de tecnologia viram badges: o mesmo .map() de antes, com key={tec} (cada nome é único no projeto) e o estilo de pílula que usamos na ficha (rounded-full bg-primaria/20 ... text-primaria). text-xs é 12px. */}
