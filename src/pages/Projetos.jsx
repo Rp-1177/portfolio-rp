@@ -12,7 +12,7 @@ function Projetos() {
         <section>
             <h1 className="font-titulo text-4xl font-bold">Projetos</h1>
             <p className="mt-4 max-w-xl text-texto-suave">
-                Alguns dos projetos que construí enquaunto estudo e pratico front end.
+                Projetos desenvolvidos ao longo da minha trajetória de aprendizado e prática em desenvolvimento Full-Stack:
             </p>
 
             <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

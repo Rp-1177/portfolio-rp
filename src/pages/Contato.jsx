@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import { useTitulo } from '../hooks/useTitulo'
 
+const ENDPOINT = import.meta.env.VITE_FORMSPREE_URL
+
+if (!ENDPOINT) {
+  console.log('VITE_FORMSPREE_URL não definida. Confira o .env.local e reinicie o servidor')
+}
+
 const campo =
   'w-full rounded-lg border border-white/10 bg-fundo px-4 py-3 text-texto placeholder:text-texto-suave focus:border-primaria focus:ring-2 focus:ring-primaria/40 focus:outline-none'
 
@@ -13,7 +19,7 @@ const campo =
 const links = [
   { rotulo: 'E-mail', valor: 'rpnascimento1177@gmail.com', href: 'mailto:rpnascimento1177@gmail.com', externo: false },
   { rotulo: 'GitHub', valor: 'github.com/Rp-1177', href: 'https://github.com/Rp-1177', externo: true },
-  { rotulo: 'LinkedIn', valor: 'linkedin.com/in/Ruan Pablo', href: 'https://linkedin.com/in/Ruan Pablo', externo: true },
+  { rotulo: 'LinkedIn', valor: 'linkedin.com/in/Ruan_Pablo', href: 'https://linkedin.com/in/ruan-pablo-507250446', externo: true },
 ]
 
 function Contato() {
@@ -30,6 +36,7 @@ function Contato() {
 
 
   const [enviado, setEnviado] = useState(false)
+  const [enviando, setEnviando] = useState(false)
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -43,9 +50,10 @@ function Contato() {
 // A forma (atual) => ... (função dentro do setForm) é a mais segura quando o novo valor depende do antigo: o React te entrega o valor mais recente garantido.
 
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
+// Uma função async sempre devolve uma Promise. O React ignora o retorno do handleSubmit, então não tem problema.
 // Todo <form> tem um comportamento padrão: recarregar a página. Num app React isso apagaria todo o state. O preventDefault() cancela esse comportamento padrão.        
 
     if (!form.nome.trim() || !form.email.trim() || !form.mensagem.trim()) {
@@ -69,10 +77,50 @@ function Contato() {
     }
 
     setErro('')
-    // TODO: enviar de verdade (Formspree, EmailJS ou o teu backend)
-    console.log('Dados do formulário:', form)
-    setEnviado(true)
-    setForm({ nome: '', email: '', mensagem: '' })
+    setEnviando(true)
+
+    try {
+      const resposta = await fetch(ENDPOINT, {
+
+// O fetch faz o pedido pelo JavaScript, sem recarregar a página.
+// await diz “pausa esta função aqui até a promessa resolver”. A página continua responsiva, só a função fica esperando.
+// await só funciona dentro de função async.
+// try     → tenta executar o código que pode falhar
+// catch   → só roda SE algo lançou um erro
+// finally → roda SEMPRE, deu certo ou deu errado
+
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(form),
+        signal: AbortSignal.timeout(10000), // aborta depois de 10 segundos
+      })
+
+// method: o tipo de pedido
+// body: o conteúdo. Só aceita texto, então o JSON.stringify transforma o objeto { nome, email, mensagem } em texto no formato JSON
+// Content-Type: application/json: avisa ao servidor o formato do que tu está mandando
+// Accept: application/json: avisa o formato que tu quer de volta. Sem esse cabeçalho, o Formspree responde com uma página, e com ele devolve JSON, que é o que um app de página única precisa. 
+
+      if (!resposta.ok) {
+        throw new Error(`Falha no envio (status ${resposta.status})`)
+      }
+
+      setEnviado(true)
+      setForm({ nome: '', email: '', mensagem: '' })
+    } catch (err) {                                                                
+      if (err instanceof TypeError) {
+        setErro('Sem conexão. Verifique a internet e tende de novo.')
+      } else {
+      setErro('Não foi possível enviar agora. Tente novamente mais tarde. ')
+      }
+    } finally {
+      setEnviando(false)
+
+// O finally é o lugar certo do setEnviando(false): o botão sempre volta ao normal, e o usuário não fica preso num “Enviando...” eterno.
+
+    }
   }
 
   return (
@@ -190,9 +238,13 @@ function Contato() {
 
               <button
                 type="submit"
+                disabled={enviando}
+
+// O disabled={enviando} impede cliques duplos. Sem isso, um usuário ansioso mandaria a mesma mensagem 3 vezes. O Tailwind tem a variante disabled: pra estilizar esse estado (disabled:opacity-60).
+
                 className="rounded-lg bg-primaria-escura px-6 py-3 font-medium text-white transition-colors hover:bg-purple-700"
               >
-                Enviar mensagem
+                {enviando ? 'Enviando...' : 'Enviar mensagem'}
               </button>
 
 {/* type="submit" no botão do form dispara o onSubmit. type="button" no “Enviar outra mensagem” evita que ele envie o form por acidente */}

@@ -1,11 +1,11 @@
 import Card from "./Card"
 
 const skills = [
-    { nome: 'HTML', nivel: 90 },
+    { nome: 'HTML', nivel: 85 },
     { nome: 'CSS', nivel: 80 },
-    { nome: 'JavaScript', nivel: 70 },
-    { nome: 'React', nivel: 60 },
-    { nome: 'Tailwind', nivel: 50 },
+    { nome: 'JavaScript', nivel: 75 },
+    { nome: 'React', nivel: 70 },
+    { nome: 'Tailwind', nivel: 68 },
 ]
 
 // É um array de objetos. Pra adicionar uma skill, é só uma linha nova, sem mexer no layout. Esse padrão (dados separados + .map()) vai aparecer em todo projeto que tu fizer: lista de produtos, de posts, de projetos.

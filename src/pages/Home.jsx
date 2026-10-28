@@ -22,7 +22,7 @@ py-8 md:py-20: 32px de padding vertical no celular, 80px de tela média pra cima
                 <h1 className="font-titulo text-4xl leading-tight font-bold md:text-6xl">
                     Eu sou <span className="text-primaria">Ruan Pablo</span>,
                     <br />
-                    desenvolvedor front end.
+                    desenvolvedor Full-Stack.
                 </h1>
 
 {/* font-titulo: a Space Grotesk que a gente registrou
@@ -33,8 +33,8 @@ md:text-6xl: de 768px pra cima, sobe pra 60px
 No JSX, <br /> precisa do fechamento automático (/), porque no JSX toda tag precisa ser fechada. E o <span className="text-primaria"> pinta só um trecho, já que span é inline e não quebra a linha.                 */}
 
                 <p className="max-w-xl text-lg text-texto-suave">
-                    Crio interfaces bonitas, rápidas e acessíveis. Atualmente aprofundando meus estudos em 
-                    React e Tailwind.
+                    Crio interfaces bonitas, rápidas e acessíveis. Atualmente aprofundando meus conhecimentos
+                    em programação Full-Stack.
                 </p>
 
 {/* max-w-xl limita a 36rem (576px). Linhas de texto muito longas cansam a leitura, e o ideal fica em torno de 60 a 75 caracteres por linha.                 */}

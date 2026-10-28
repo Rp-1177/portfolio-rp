@@ -51,7 +51,7 @@ px-6 py-4: padding de 24px nos lados e 16px em cima/embaixo */}
 
 {/* <Link to="/">: link que troca de página sem recarregar (substitui o <a>) */}
 
-          &lt;Dev/&gt;
+          &lt;Ruan/&gt;
 
 {/* &lt;Dev/&gt;: o &lt; e o &gt; são códigos pra mostrar os símbolos < e > como texto */}
 

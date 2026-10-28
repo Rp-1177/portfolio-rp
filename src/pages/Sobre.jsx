@@ -2,15 +2,15 @@ import Card from "../components/Card"
 import { useTitulo } from "../hooks/useTitulo"
 
 const status = [
-    { rotulo: 'Classe', valor: 'Front-End Developer' },
-    { rotulo: 'Foco atual', valor: 'React e Tailwind' },
-    { rotulo: 'Objetivo', valor: 'Aprofundar mais meus conhecimentos em Front-End para melhor uso profissional' },
+    { rotulo: 'Classe', valor: 'Full-Stack Developer' },
+    { rotulo: 'Foco atual', valor: 'TypeScript e APIs REST' },
+    { rotulo: 'Objetivo', valor: 'Aprofundar mais meus conhecimentos em Full-Stack para melhor uso profissional' },
 ]
 
 const inventario = [
-    { emoji: '🎮', titulo: 'Jogos', texto: 'Jogos de turno em geral, com mecanicas unicas e um foco na historia, como Persona, Pokemon, Undertale, etc.' },
-    { emoji: '📺', titulo: 'Animes', texto: 'Animes shonen em geral, com Mob Psycho como favorito, junto com one piece e Naruto, entre outros da categoria.' },
-    { emoji: '💻', titulo: 'Código', texto: 'Gosto de fazer interfaces criativas e aprender coisas novas sempre que possivel pra aumentar minha proficiencia codificando coisas novas' },
+    { emoji: '✈️', titulo: 'Jornada', texto: 'Meu interesse pela programação começou na adolescência, por meio de vídeos sobre criadores de conteúdo desenvolvendo sites e jogos no YouTube. Em 2023, iniciei minha graduação em Análise e Desenvolvimento de Sistemas pela UNIALFA, transformando esse interesse em um objetivo profissional.' },
+    { emoji: '💻', titulo: 'Dev', texto: 'Estou sempre buscando aprimorar minhas habilidades em Full Stack, explorando tecnologias como React, Tailwind, CSS e TypeScript, enquanto aprofundo meus conhecimentos para criar aplicações cada vez mais completas, modernas e eficientes.' },
+    { emoji: '👾', titulo: 'Código', texto: 'Gosto de desenvolver interfaces criativas e funcionais, buscando constantemente aprender novas tecnologias e aprimorar minhas habilidades de programação por meio da prática e de criação de novos projetos.' },
 ]
 
 function Sobre() {
@@ -26,10 +26,10 @@ function Sobre() {
 
                 <div className="space-y-4 text-texto-suave md:col-span-2">
                     <p>
-                        Sou formado em Análise e Desenvolvimento de Sistemas e estou me aprofundando mais em front end.
+                        Sou formado em Análise e Desenvolvimento de Sistemas pela UNIALFA e tenho interesse em desenvolvimento de software, com foco na criação de interfaces modernas, funcionais e intuitivas.
                     </p>
-                    <p>Comecei na faculdade da UNIALFA de ADS, estudei toda logica e programação, desenvolvimento web e mobile, gestão e metodologias, infraestrutura, entre outras disciplinas do curso.</p>
-                    <p>Busco uma oportunidade de emprego para que eu possa fazer minha trajetoria profissional junto da empresa, buscando realizar projetos e ampliar meus conhecimentos, evoluindo com a empresa.</p>
+                    <p>Durante minha formação, desenvolvi conhecimentos em lógica de programação, desenvolvimento web e mobile, bancos de dados, infraestrutura e metodologias de desenvolvimento. Atualmente, aprofundando e expandindo meus conhecimentos em back-end, APIs REST e banco de dados.</p>
+                    <p>Busco uma oportunidade profissional para aplicar meus conhecimentos em projetos reais, colaborar com uma equipe de desenvolvimento e continuar evoluindo tecnicamente, contribuindo para a criação de soluções eficientes e de qualidade.</p>
                 </div>
 
                 <Card>

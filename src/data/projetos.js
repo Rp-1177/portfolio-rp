@@ -4,15 +4,15 @@ export const projetos = [
         titulo: 'Meu Portfólio',
         descricao: 'Site pessoal multi-página feito com React, React Router e Tailwind.',
         tecnologias: ['React', 'Tailwind', 'Vite'],
-        github: 'http://github.com/Rp-1177/meu-portfolio',
+        github: 'https://github.com/Rp-1177/portfolio-rp',
         demo: '',
     },
     {
         id: 2,
         titulo: 'Projeto Full Stack',
-        descricao: 'Site pessoal Full Stack feito com Javascript, Express, PostgreSQL, SQL, pgAdmin',
+        descricao: 'Projeto pessoal Full Stack feito com Javascript, Express, PostgreSQL, SQL, pgAdmin',
         tecnologias: ['Express', 'Node.js', 'Cors', 'Dotenv'],
-        github: 'http://github.com/Rp-1177/pratica-programacao',
+        github: 'https://github.com/Rp-1177/projeto_full-stack',
         demo: '',   
     },
     {
