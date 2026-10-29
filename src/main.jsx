@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
+import { MotionConfig } from 'motion/react'
 
 // <BrowserRouter>: liga o roteamento usando a URL do navegador. Envolve o app uma vez só, no main.jsx
 
@@ -13,7 +14,12 @@ createRoot(document.getElementById('root')).render(
 
   <StrictMode>
     <BrowserRouter>
-    <App />
+      <MotionConfig reducedMotion="user">
+
+{/* Com reducedMotion="user", se a pessoa ativou “reduzir movimento” no sistema, o Motion desliga as animações de movimento (deslocamentos e escalas) e mantém só as suaves. É a versão em JavaScript do motion-reduce: */}
+
+        <App />
+      </MotionConfig>
     </BrowserRouter>
   </StrictMode>,
 )

@@ -3,9 +3,10 @@ import Button from "./Button";
 
 function ProjetoCard({ titulo, descricao, tecnologias, github, demo}) {
     return (
-        <Card className="flex flex-col">
+        <Card className="flex h-full flex-col">
 
 {/* <Card className="flex flex-col">: lembra do className como prop? Aqui a gente adiciona o flex em coluna ao Card. Não conflita com nada que já tá lá. */}
+{/* agora o item direto do grid é o Revelar, e não o Card. Os itens do grid esticam sozinhos, mas o Card dentro do wrapper não sabe disso. Com h-full nos dois, a altura passa de pai pra filho e os cards continuam iguais. Embrulhar elementos pode quebrar layout */}
 
             <h2 className="font-titulo text-xl font-bold">{titulo}</h2>
             <p className="mt-2 flex-1 text-texto-suave">{descricao}</p>

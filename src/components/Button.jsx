@@ -19,7 +19,7 @@ function Button({ to, href, variante = 'primario', children}) {
 // variante = 'primario' é um valor padrão: se quem usa o botão não passar variante, vale 'primario'.
 // children é tudo que fica entre as tags de abertura e fechamento.
 
-    const classes = `inline-block rounded-lg px-6 py-3 font-medium transition-colors ${variantes[variante]}`
+    const classes = `inline-block rounded-lg px-6 py-3 font-medium transition-colors active:scale-95 motion-reduce:transition-none ${variantes[variante]}`
 
 // inline-block: o <a> é inline por padrão, e elementos inline ignoram padding vertical no layout. O inline-block faz ele respeitar o py-3 e ainda ficar do lado de outros elementos.
 // rounded-lg: border-radius de 8px.

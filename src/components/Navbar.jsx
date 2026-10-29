@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router'
+import { AnimatePresence, motion } from 'motion/react'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -173,17 +174,36 @@ currentColor faz o traço usar a cor do texto, então o ícone herda text-texto 
       </nav>
 
 {/* Menu mobile: só existe quando aberto */}
+      
+    <AnimatePresence>
+
+{/* AnimatePresence é a peça que o CSS não tem. Quando aberto vira false, o React remove o elemento na hora, sem tempo pra animar a saída. O AnimatePresence segura o elemento na tela até a animação exit terminar. */}
+
       {aberto && (
+        <motion.nav
+          key="menu-mobile"
+          aria-label="Menu mobile"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
 
-// Se aberto for true, a lista existe no HTML. Se for false, ela nem é criada. É diferente do hidden, que esconde mas mantém o elemento na página. Aqui aberto é booleano, então não tem a pegadinha do 0 que falamos antes.
+// height: 'auto': o Motion consegue animar até a altura natural do conteúdo, o que no CSS puro é difícil
 
-        <ul className="space-y-1 border-t border-white/10 px-6 py-4 md:hidden">
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
+          className="overflow-hidden md:hidden"
+        >
+
+{/* Padding e borda ficam no <ul> de dentro, e o overflow-hidden fica no de fora. Se o padding estivesse no elemento que colapsa, ele não chegaria a zero e sobraria uma faixa. */}
+{/* // Se aberto for true, a lista existe no HTML. Se for false, ela nem é criada. É diferente do hidden, que esconde mas mantém o elemento na página. Aqui aberto é booleano, então não tem a pegadinha do 0 que falamos antes. */}
+
+        <ul className="space-y-1 border-t border-white/10 px-6 py-4">
           {links.map(({ to, label }) => (
             <li key={to}>
               <NavLink
               to={to}
               end={to === '/'}
               onClick={() => setAberto(false)}
+              
 
 // Nos links do menu mobile e no logo. Sem isso, tu clica em “Sobre”, a página muda e o menu continua aberto cobrindo o conteúdo. O onClick do NavLink roda junto com a navegação, e não impede ela.
 
@@ -194,10 +214,11 @@ currentColor faz o traço usar a cor do texto, então o ícone herda text-texto 
             </li>
           ))}
         </ul>
-      )}
-
-    </header>
-  )
+      </motion.nav>
+    )}
+  </AnimatePresence>
+</header>
+)
 }
 
 export default Navbar

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTitulo } from '../hooks/useTitulo'
+import { FaEnvelope, FaGithub, FaLinkedinIn } from 'react-icons/fa'
 
 const ENDPOINT = import.meta.env.VITE_FORMSPREE_URL
 
@@ -17,12 +18,15 @@ const campo =
 // Uma constante campo guarda as classes dos campos, pra não repetir 3 vezes. Ela tem as classes completas, então o Tailwind enxerga.
 
 const links = [
-  { rotulo: 'E-mail', valor: 'rpnascimento1177@gmail.com', href: 'mailto:rpnascimento1177@gmail.com', externo: false },
-  { rotulo: 'GitHub', valor: 'github.com/Rp-1177', href: 'https://github.com/Rp-1177', externo: true },
-  { rotulo: 'LinkedIn', valor: 'linkedin.com/in/Ruan_Pablo', href: 'https://linkedin.com/in/ruan-pablo-507250446', externo: true },
+  { rotulo: 'E-mail', valor: 'rpnascimento1177@gmail.com', href: 'mailto:rpnascimento1177@gmail.com', externo: false , icone: FaEnvelope },
+  { rotulo: 'GitHub', valor: 'github.com/Rp-1177', href: 'https://github.com/Rp-1177', externo: true, icone: FaGithub },
+  { rotulo: 'LinkedIn', valor: 'linkedin.com/in/Ruan_Pablo', href: 'https://linkedin.com/in/ruan-pablo-507250446', externo: true, icone: FaLinkedinIn },
 ]
 
+// Componente guardado num array: icone: FaEnvelope guarda a função do componente, sem os parênteses. Componentes são valores em JavaScript, como textos e números.
+
 function Contato() {
+
   useTitulo('Contato | Ruan')
   
   const [form, setForm] = useState({ nome: '', email: '', mensagem: '' })
@@ -124,6 +128,7 @@ function Contato() {
   }
 
   return (
+
     <section>
       <h1 className="font-titulo text-4xl font-bold">Contato</h1>
       <p className="mt-4 max-w-xl text-texto-suave">
@@ -256,7 +261,10 @@ function Contato() {
         </div>
 
         <div className="space-y-4">
-          {links.map(({ rotulo, valor, href, externo }) => (
+          {links.map(({ rotulo, valor, href, externo, icone: Icone }) => (
+
+// icone: Icone na desestruturação renomeia a variável. É obrigatório porque, no JSX, tag que começa com minúscula é tratada como HTML (<icone /> não existe). Componente sempre começa com maiúscula.
+
             <a
               key={rotulo}
               href={href}
@@ -266,10 +274,26 @@ function Contato() {
 
 
               rel="noreferrer"
-              className="block rounded-xl border border-white/10 bg-superficie p-4 transition hover:border-primaria/50"
+              className="flex items-center gap-4 rounded-xl border border-white/10 bg-superficie p-4 transition hover:border-primaria/50"
             >
-              <p className="text-sm text-texto-suave">{rotulo}</p>
-              <p className="mt-1 font-medium text-destaque">{valor}</p>
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primaria/20 text-purple-300">
+
+{/* text-purple-300 sobre o fundo roxo translúcido já passa no contraste, como calculamos */}
+{/* shrink-0: o quadradinho do ícone não encolhe quando falta espaço */}
+
+                <Icone className="h-6 w-6" aria-hidden="true" />
+              </span>
+              <div className="min-w-0">
+
+{/* min-w-0 + truncate: filhos de flex têm, por padrão, largura mínima igual ao conteúdo, então um e-mail longo estoura a caixa. O min-w-0 libera o encolhimento, e o truncate corta o texto com “…”. */}
+
+                <p className="text-sm text-texto-suave">{rotulo}</p>
+                <p className="mt-1 truncate font-medium text-destaque">{valor}</p>
+              </div>
+              {externo && <span className="sr-only">(abre em nova aba)</span>}
+
+{/* sr-only (da Fase 13): avisa quem usa leitor de tela que o link abre em nova aba */}
+
             </a>
           ))}
         </div>

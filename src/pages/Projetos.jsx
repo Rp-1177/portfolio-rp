@@ -4,6 +4,7 @@ import { useTitulo } from "../hooks/useTitulo"
 // O import do array: { projetos } com chaves, porque foi export nomeado. O caminho ../data/projetos sobe uma pasta (..) e entra em data. Não precisa escrever .js.
 
 import ProjetoCard from "../components/ProjetoCard"
+import Revelar from "../components/Revelar"
 
 function Projetos() {
     useTitulo('Projetos | Ruan')
@@ -26,9 +27,10 @@ gap-6: 24px entre linhas e colunas. */}
 fr significa “fração do espaço disponível”. 1fr 1fr = metade e metade.
 O minmax(0, 1fr) impede que um conteúdo largo (um texto sem quebra, por exemplo) estoure a coluna. */}
 
-                {projetos.map((projeto) => (
-                    <ProjetoCard key={projeto.id} {...projeto} />
-
+                {projetos.map((projeto, i) => (
+                    <Revelar key={projeto.id} atraso={i * 0.1} className="h-full">
+                        <ProjetoCard {...projeto} />
+                    </Revelar>
 // O spread {...projeto}: espalha todas as chaves do objeto como props. É um atalho pra: <ProjetoCard titulo={projeto.titulo} descricao={projeto.descricao} tecnologias={projeto.tecnologias} github={projeto.github} demo={projeto.demo} />
 // O id também vai como prop, mas o ProjetoCard não declara ele, então simplesmente ignora.
 // A key fica no .map(), no componente de fora, e não dentro do ProjetoCard.

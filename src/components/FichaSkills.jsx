@@ -1,4 +1,5 @@
 import Card from "./Card"
+import { motion } from "motion/react"
 
 const skills = [
     { nome: 'HTML', nivel: 85 },
@@ -54,11 +55,15 @@ border-b + pb-4 forma o divisor com 16px de respiro embaixo */}
 
 {/* h-2 (8px), fundo branco a 10% (a parte “vazia”). O overflow-hidden corta o que passar das pontas arredondadas. */}
 
-                         <div
+                     <motion.div
                          className="h-full rounded-full bg-linear-to-r from-primaria to-destaque"
-                         style={{ width: `${nivel}%` }}
-                        />
+                         initial={{ width: 0 }}
+                         whileInView={{ width: `${nivel}%` }}
+                         viewport={{ once: true }}
+                         transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+                    />
 
+{/* Esse efeito anima a largura, e funciona bem porque é um elemento pequeno. Em geral, o ideal é animar só opacity e transform (x, y, scale), que o navegador faz sem recalcular o layout, e usar width/height com parcimônia. */}
 {/* Preenchimento: h-full ocupa 100% da altura do trilho. A largura em % é calculada em relação ao pai, que é o trilho. Por isso 70 vira 70% do trilho. */}
 {/* bg-linear-to-r from-primaria to-destaque: degradê da esquerda (r = right) pra direita, do roxo pro ciano. */}
 {/* style={{ width: ... }}: as chaves duplas são duas coisas. A de fora diz “aqui vem JavaScript”. A de dentro é o objeto de estilos. Propriedades CSS viram camelCase (backgroundColor, não background-color) pra números dinâmicos (largura vinda de dados), usar style. */}
